@@ -174,12 +174,12 @@ res.xgboost$aggregate(list(msr("classif.ce"),
 # Preprocessing
 
 cake <- recipe(fatal_mi ~ ., data = heart.data) %>%
-  step_meanimpute(all_numeric()) %>% # impute missings on numeric values with the mean
-  step_center(all_numeric()) %>% # center by subtracting the mean from all numeric features
-  step_scale(all_numeric()) %>% # scale by dividing by the standard deviation on all numeric features
-  step_unknown(all_nominal(), -all_outcomes()) %>% # create a new factor level called "unknown" to account for NAs in factors, except for the outcome (response can't be NA)
-  step_dummy(all_nominal(), one_hot = TRUE) %>% # turn all factors into a one-hot coding
-  prep(training = heart.train) # learn all the parameters of preprocessing on the training data
+  step_meanimpute(all_numeric()) %>% 
+  step_center(all_numeric()) %>% 
+  step_scale(all_numeric()) %>% 
+  step_unknown(all_nominal(), -all_outcomes()) %>% #
+  step_dummy(all_nominal(), one_hot = TRUE) %>% 
+  prep(training = heart.train) 
 
 heart.train.final <- bake(cake, new_data = heart.train) # apply preprocessing to training data
 heart.validate.final <- bake(cake, new_data = heart.validate) # apply preprocessing to validation data
