@@ -2,6 +2,12 @@
 Summative assignment code
 Z code: Z0158114
 '
+# installing packages
+
+packages <- c("skimr", "tidyverse", "ggplot2", "dplyr", "mlr3verse", "data.table", 
+              "rsample", "DataExplorer", "GGally", "scales", "recipes", "keras")
+
+install.packages(packages)
 
 # Loading all necessary packages
 library(skimr)
@@ -12,7 +18,6 @@ library(mlr3verse)
 library(data.table)
 library(rsample)
 library(DataExplorer)
-library(gghalves)
 library(GGally)
 library(scales)
 library(recipes)
