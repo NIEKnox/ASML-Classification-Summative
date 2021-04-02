@@ -61,7 +61,6 @@ set.seed(1234) # set seed to ensure reproducibility
 
 names(heart.data)
 
-?TaskClassif
 
 # Define task
 
@@ -337,7 +336,7 @@ legend("topright", legend=c("Training", "Validation"), fill=c(col1, col2))
 
 dropout.rate <- 0.35
 
-unitnum <- 60
+unitnum <- 30
 
 # Using the best dropout rate
 best.net <- keras_model_sequential() %>%
@@ -363,14 +362,14 @@ best.net %>% compile(
 
 bestnet.history <- best.net %>% fit(
   heart.train.x, heart.train.y,
-  epochs = epochnum,
+  epochs = 100,
   validation_data = list(heart.validate.x, heart.validate.y),
 )
 
-bestnet.prob <- bestnet %>% predict_proba(heart.test.x)
+bestnet.prob <- best.net %>% predict_proba(heart.test.x)
 
 # To get the raw classes (assuming 0.5 cutoff):
-bestnet.res <- bestnet %>% predict_classes(heart.test.x)
+bestnet.res <- best.net %>% predict_classes(heart.test.x)
 
 # Confusion matrix/accuracy/AUC metrics
 # (recall, in Lab03 we got accuracy ~0.80 and AUC ~0.84 from the super learner,
